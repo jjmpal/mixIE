@@ -185,6 +185,7 @@ mixIE_MA <- function(b_exp,b_out,se_exp,se_out,n,
     p_BIC_MA=0
     c_BIC_MA=1
     tau_BIC_MA=rep(0,2)
+    theta_vec_ret <- NA
   } else{
     mixIEms_BIC = mixIE_multiple_start(b_exp,b_out,se_exp,se_out,n=n,...)
     if(TRUE){
@@ -231,12 +232,12 @@ mixIE_MA <- function(b_exp,b_out,se_exp,se_out,n,
       pval_BIC_MA = 2*pnorm(abs(theta_BIC_MA/se_BIC_MA),lower.tail=FALSE)
       pvalr_BIC_MA = 2*pnorm(abs(r_BIC_MA/ser_BIC_MA),lower.tail=FALSE)
     }
-
+    theta_vec_ret <- theta_vec[BICmodel_ind]
 }
   return(list(theta_BIC_MA=theta_BIC_MA,se_BIC_MA=se_BIC_MA,pval_BIC_MA=pval_BIC_MA,
               r_BIC_MA=r_BIC_MA,p_BIC_MA=p_BIC_MA,c_BIC_MA=c_BIC_MA,
               tau_BIC_MA=tau_BIC_MA,
-              theta_vec=theta_vec[BICmodel_ind]))
+              theta_vec=theta_vec_ret))
 }
 
 
